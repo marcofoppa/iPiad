@@ -1,6 +1,6 @@
 ﻿
 var GlobalPiadinerie = new Array();
-var _PiadineriaRow = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><a data-idx="[rowIndex]"  href="#dettaglioPiadineria" class="ui-link-inherit BtnPiadineria"><p class="ui-li-aside ui-li-desc"><strong>[distance]</strong> km <br />Percorrenza: <strong>[duration]</strong> min</p><h3 class="ui-li-heading">[ragioneSociale]</h3><p class="ui-li-desc"><strong>[address], [city]</strong></p></a></li>';
+var _PiadineriaRow = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><a data-idx="[rowIndex]"  href="#" class="ui-link-inherit BtnPiadineria"><p class="ui-li-aside ui-li-desc"><strong>[distance]</strong> km <br />Percorrenza: <strong>[duration]</strong> min</p><h3 class="ui-li-heading">[ragioneSociale]</h3><p class="ui-li-desc"><strong>[address], [city]</strong></p></a></li>';
 
 function Piadineria(code, city, address, latitude, longitude, province, ragioneSociale, region, distance, duration) {
     this.code = code;
@@ -31,17 +31,15 @@ function LoadPaginaPiadinerie() {
             .replace("[city]", piad.city)
             .replace("[address]", piad.address);
     }
+    $('#listapiadinerie').html(content);
 
-    //$('#listapiadinerie').html(content);
-
-
-    $(".BtnPiadineria").unbind("click").click(function () {
+    $(".BtnPiadineria").unbind("click").click(function (a) {
+        a.preventDefault();
         var codePiadineria = $(this).data('idx');
         LoadPaginaDettaglioPiadineria(GlobalPiadinerie[codePiadineria]);
     });
 
-    $('#listapiadinerie').html(content);
-    $.mobile.changePage("#piadinerie", { transition: "slideup", changeHash: true });
 
+    $.mobile.changePage("#piadinerie", { transition: "slideup", changeHash: true });
 
 }
