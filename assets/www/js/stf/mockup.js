@@ -11,3 +11,17 @@ function GetPiadinerie(latitudine, longitudine, callbackFunction) {
 
     callbackFunction();
 }
+
+
+function GetMenuPiadine(codicepiadineria, callback) {
+
+    var piadine = [];
+
+    piadine.push(new OrdinePiadinaRow("1", "Cotto fontina", 3.5, "Prosciutto cotto,fontina valdostana", null));
+    piadine.push(new OrdinePiadinaRow("2", "Crudo fontina", 3.5, "Prosciutto crudo,fontina valdostana", null));
+    piadine.push(new OrdinePiadinaRow("3", "4 formaggi", 3.8, "fontina valdostana,gorgonzola,taleggio,provola", null));
+    piadine.push(new OrdinePiadinaRow("4", "Pizzaiola", 3.7, "Pomodoro,mozzarella", null));
+    piadine.push(new OrdinePiadinaRow("5", "Prosciutto funghi", 3.5, "Prosciutto cotto,funghi,fontina valdostana", null));
+
+    callback(piadine);
+}

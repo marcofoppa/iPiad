@@ -12,8 +12,14 @@ function onDeviceReady() {
     });
     
 
-    $(".BtnListaPiadinerie").click(function() {
+    $(".BtnListaPiadinerie").click(function (e) {
+        e.preventDefault();
         GetCurrentPositionAndLoadPaginaPiadinerie();
+    });
+
+    $('.BtnLoadMenuPiadine').click(function (e) {
+        e.preventDefault();
+        LoadPaginaMenuPiadine();
     });
 
     LoadPaginaLocalizzazione();

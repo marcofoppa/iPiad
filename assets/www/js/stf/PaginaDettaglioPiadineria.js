@@ -3,8 +3,8 @@
 function getMappaImg(lat, lon) {
     try {
         //Leggo le dimensioni dello schermo
-        var width = window.width;
-        var height = window.height;
+        var width = window.innerWidth;
+        var height = window.innerHeight;
 
         //Imposto una dimensione quadrata utilizzando la dimensione minore (larghezza - altezza)
         if (width > height) {
