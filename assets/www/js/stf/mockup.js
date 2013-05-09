@@ -1,4 +1,6 @@
-﻿function GetPiadinerie(latitudine, longitudine, callbackFunction) {
+﻿
+
+function GetPiadinerie(latitudine, longitudine, callbackFunction) {
     var arrayPiadinerie = [];
 
     for (var i = 0; i < 10; i++) {
