@@ -11,7 +11,6 @@
     <script src="js/library/jquery.js"></script>
     <script src="js/library/jquery.mobile-1.3.1.min.js"></script>
     <script src="js/library/cordova-2.1.0.js"></script>
-    <script src="js/stf/main.js"></script>
     <script src="js/stf/mockup.js"></script>
 
     <script src="js/stf/PaginaConfermaOrdine.js"></script>
@@ -22,12 +21,14 @@
     <script src="js/stf/PaginaPiadinerie.js"></script>
     <script src="js/stf/PaginaLocalizzazione.js"></script>
 
+    <script src="js/stf/main.js"></script>
+
 </head>
 <body data-content-theme="b">
     <!-- Home -->
     <div data-role="page" id="localizzazione">
         <div data-role="header">
-            <h4>IPIAD 1.0.10</h4>
+            <h4>IPIAD 1.0.49</h4> 
         </div>
         <img src="css/images/IPIAD.jpg" width="100%" />
         <div data-role="content">
@@ -38,7 +39,6 @@
             <div data-role="navbar">
                 <ul>
                     <li><a class="BtnEsci" href="#">Esci</a></li>
-                    <!--<li><a href="#piadinerie" data-icon="arrow-r" class="ui-btn-active">Continua</a></li>-->
                 </ul>
             </div>
             <!-- /navbar -->
@@ -54,8 +54,19 @@
         <div data-role="content">
 
             <ul id="listapiadinerie" data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
-
-                <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><a href="#dettaglioPiadineria" class="ui-link-inherit">
+                <li>
+                    <a data-idx="[rowIndex]" href="#" class="ui-link-inherit BtnPiadineria">
+                        <p class="ui-li-aside ui-li-desc">
+                            <strong>[distance]</strong> km
+                                  <br />
+                            Percorrenza: <strong>[duration]</strong> min
+                        </p>
+                        <h3 class="ui-li-heading">[ragioneSociale]</h3>
+                        <p class="ui-li-desc"><strong>[address], [city]</strong></p>
+                    </a>
+                </li>
+            </ul>
+            <!--<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><a href="#dettaglioPiadineria" class="ui-link-inherit">
                     <p class="ui-li-aside ui-li-desc">
                         <strong>1</strong> km
                         <br />
@@ -63,11 +74,7 @@
                     </p>
                     <h3 class="ui-li-heading">Piadineria A</h3>
                     <p class="ui-li-desc"><strong>Viale dei Mille 69, Brescia</strong></p>
-                </a></li>
-
-            </ul>
-
-
+                </a></li>-->
 
         </div>
         <div data-role="footer" style="overflow: hidden;" data-position="fixed">
@@ -84,13 +91,24 @@
 
     <div data-role="page" id="dettaglioPiadineria">
         <div data-theme="a" data-role="header">
-            <h3>Piadineria</h3>
+            <h3 id="ragioneSociale">Piadineria</h3>
         </div>
 
         <div data-role="content">
             <div id="map_canvas"></div>
         </div>
 
+        <table width="80%" align="center">
+            <tr>
+                <td id="tableRagioneSociale"></td>
+            </tr>
+            <tr>
+                <td id="tableIndirizzo"></td>
+            </tr>
+            <tr>
+                <td id="tableCitta"></td>
+            </tr>
+        </table>
 
         <div data-role="footer" style="overflow: hidden;" data-position="fixed">
             <h4 style="text-align: center;">Studiofarma S.r.l.</h4>
@@ -109,34 +127,40 @@
             <h3>MENU' PIADINE</h3>
         </div>
 
-        <ul data-role="listview" data-split-icon="gear" data-split-theme="d" data-inset="true">
-            <li><a href="#">
-                <img src="../../_assets/img/album-bb.jpg">
-                <h2>Broken Bells</h2>
-                <p>Broken Bells</p>
-            </a>
-                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-            </li>
-            <li><a href="#">
-                <img src="../../_assets/img/album-hc.jpg">
-                <h2>Warning</h2>
-                <p>Hot Chip</p>
-            </a>
-                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-            </li>
-            <li><a href="#">
-                <img src="../../_assets/img/album-p.jpg">
-                <h2>Wolfgang Amadeus Phoenix</h2>
-                <p>Phoenix</p>
-            </a>
-                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+        <ul id="listViewPiadine" data-role="listview" data-split-icon="plus" data-split-theme="d" data-inset="true">
+            <li>
+                <a href="#">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <h3>[nome] - (&euro; [prezzo])</h3>
+                                <br />
+                                <p>[ingredienti]</p>
+                            </td>
+                            <td style="width: 10%" align="right">
+                                <h1>[quantita]</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </a>
+                <a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="BtnSelectPiadina" data-codice="[codice]">Acquista</a>
             </li>
         </ul>
+
+        <label for="totalePezzi">Pezzi ordinati</label>
+        <input id="totalePezzi" placeholder="" value="" type="text" data-mini="true" readonly="readonly" />
+        <label for="totaleOrdine">Costo totale</label>
+        <input id="totaleOrdine" placeholder="" value="" type="text" data-mini="true" readonly="readonly" />
+
         <div data-role="popup" id="purchase" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width: 340px; padding-bottom: 2em;">
             <h3>Compra una piadina</h3>
-            <p>Your download will begin immediately on your mobile device when you purchase.</p>
-            <a href="index.html" data-role="button" data-rel="back" data-theme="b" data-icon="check" data-inline="true" data-mini="true">Buy: $10.99</a>
-            <a href="index.html" data-role="button" data-rel="back" data-inline="true" data-mini="true">Cancel</a>
+            <p>Quante piadine vuoi acquistare?</p>
+            <label for="sliderQuantita">Quantit&agrave;</label>
+            <input id="sliderQuantita" type="range" name="slider" value="1" min="0" max="15" data-highlight="false" />
+            <a data-role="button" id="btnMeno">-</a>
+            <a data-role="button" id="btnPiu">+</a>
+            <a data-role="button" data-theme="b" data-icon="check" data-inline="true" data-mini="true" class="BtnConfermaQta">Conferma</a>
+            <a data-role="button" data-inline="true" data-mini="true" class="BtnClosePopup">Annulla</a>
         </div>
 
         <div data-role="footer" style="overflow: hidden;" data-position="fixed">

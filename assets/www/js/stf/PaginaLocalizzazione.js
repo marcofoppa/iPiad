@@ -19,6 +19,7 @@ function LoadPaginaLocalizzazione() {
 function GetCurrentPositionAndLoadPaginaPiadinerie() {
     navigator.geolocation.getCurrentPosition(
         function (position) {
+            
             GetPiadinerie(position.coords.latitude, position.coords.longitude, function () { LoadPaginaPiadinerie(); });
         },
         function (error) {

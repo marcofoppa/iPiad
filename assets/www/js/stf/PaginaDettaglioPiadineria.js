@@ -36,4 +36,8 @@ function getMappaImg(lat, lon) {
 function LoadPaginaDettaglioPiadineria(piadineria) {
     $.mobile.changePage("#dettaglioPiadineria", { transition: "slideup", changeHash: false });
     $("#map_canvas").html('').prepend(getMappaImg(piadineria.latitude, piadineria.longitude));
+    $('#ragioneSociale').html(piadineria.ragioneSociale);
+    $('#tableCitta').html(piadineria.city);
+    $('#tableIndirizzo').html(piadineria.address);
+    $('#tableRagioneSociale').html(piadineria.ragioneSociale);
 }

@@ -21,7 +21,28 @@ function onDeviceReady() {
         e.preventDefault();
         LoadPaginaMenuPiadine();
     });
+    
+    $('.BtnConfermaQta').click(function () {
+        OrdinaPiadina();
+    }); 
 
+    $('.BtnClosePopup').click(function (e) {
+        e.preventDefault();
+        ComponiMenu(MenuPiadine);
+    });
+    
+    $('#btnMeno').click(function (e) {
+        e.preventDefault();
+        AggiornaQuantita(-1);
+    });
+    
+    $('#btnPiu').click(function (e) {
+        e.preventDefault();
+        AggiornaQuantita(1);
+    });
+
+    rowPiadine = $('#listViewPiadine').html();
+    rowPiadineria = $('#listapiadinerie').html();
     LoadPaginaLocalizzazione();
 }
 
