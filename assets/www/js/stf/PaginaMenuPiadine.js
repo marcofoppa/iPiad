@@ -15,7 +15,7 @@ function OrdinePiadinaRow(codice, nome, prezzo, ingredienti, url) {
 
 }
 
-function ComponiMenu(lista) {
+function ComponiEStampaMenu(lista) {
     var content = '';
     var totPezzi = 0;
     var totPrezzo = 0;
@@ -38,10 +38,12 @@ function ComponiMenu(lista) {
 
     $('.BtnSelectPiadina').click(function () {
         CodicePiadina = $(this).data('codice');
-        $('#sliderQuantita').val(GetPiadina(CodicePiadina).Quantita);
+        var piada = GetPiadina(CodicePiadina);
+        $('#sliderQuantita').val(piada.Quantita);
+        $('#popupNomePiadina').html(piada.Nome);
     });
 
-    $.mobile.changePage("#menuPiadine", {  changeHash: false });
+    $.mobile.changePage("#menuPiadine", { transition: "slideup", changeHash: false });
     $('#listViewPiadine').listview('refresh');
 
     $('#totalePezzi').val(totPezzi);
@@ -50,8 +52,7 @@ function ComponiMenu(lista) {
 
 function LoadPaginaMenuPiadine() {
     GetMenuPiadine(GlobalPiadinerie[IdxPiadineriaSelezionata].code, function (lista) {
-        ComponiMenu(lista);
-
+        ComponiEStampaMenu(lista);
     });
 }
 
@@ -74,7 +75,7 @@ function OrdinaPiadina() {
             break;
         }
     }
-    ComponiMenu(MenuPiadine);
+    ComponiEStampaMenu(MenuPiadine);
 
 }
 

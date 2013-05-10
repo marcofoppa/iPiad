@@ -34,7 +34,7 @@ function onDeviceReady() {
 
     $('.BtnClosePopup').click(function (e) {
         e.preventDefault();
-        ComponiMenu(MenuPiadine);
+        ComponiEStampaMenu(MenuPiadine);
     });
     
     $('#btnMeno').click(function (e) {
@@ -47,8 +47,15 @@ function onDeviceReady() {
         AggiornaQuantita(1);
     });
 
+    $('.BtnLoadConsegna').click(function (e) {
+        e.preventDefault();
+        LoadPaginaConsegnaPiadine();
+    });
+    
     rowPiadine = $('#listViewPiadine').html();
     rowPiadineria = $('#listapiadinerie').html();
+    //rowRiepilogoPiadine = $('#listViewRiepilogoPiadine').html();
+    
     LoadPaginaLocalizzazione();
 }
 
