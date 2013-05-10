@@ -22,7 +22,7 @@
     <script src="js/stf/PaginaLocalizzazione.js"></script>
 
     <script src="js/stf/main.js"></script>
-    
+
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
 </head>
@@ -30,7 +30,7 @@
     <!-- Home -->
     <div data-role="page" id="localizzazione">
         <div data-role="header">
-            <h4>IPIAD 1.0.72</h4>
+            <h4>IPIAD 2.0</h4>
         </div>
         <img src="css/images/IPIAD.jpg" width="100%" />
         <div data-role="content">
@@ -165,7 +165,7 @@
             <div data-role="navbar">
                 <ul>
                     <li><a class="BtnListaPiadinerie" href="#" data-icon="arrow-l">Indietro</a></li>
-                    <li><a href="#consegnaPiadine" data-icon="arrow-r">Continua</a></li>
+                    <li><a class="BtnLoadConsegna" data-icon="arrow-r">Continua</a></li>
                 </ul>
             </div>
         </div>
@@ -187,11 +187,10 @@
             <li data-theme="c">
                 <h2 id="tblConfermaNumeroPezzi"></h2>
             </li>
-            <li data-role="list-divider" role="heading">Prezzo
+            <li data-role="list-divider" role="heading">Prezzo &euro;
             </li>
             <li data-theme="c">
                 <h2 id="tblConfermaPrezzo"></h2>
-                &euro;
             </li>
         </ul>
         <br />
@@ -223,7 +222,7 @@
             <li data-role="list-divider" role="heading">Orario
             </li>
             <li data-theme="c">
-               <table align="center">
+                <table align="center">
                     <tr>
                         <td style="width: 100px;">
                             <select id="oraConsegna" style="width: 50px">
