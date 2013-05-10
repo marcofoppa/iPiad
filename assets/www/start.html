@@ -28,7 +28,7 @@
     <!-- Home -->
     <div data-role="page" id="localizzazione">
         <div data-role="header">
-            <h4>IPIAD 1.0.49</h4> 
+            <h4>IPIAD 1.0.57</h4>
         </div>
         <img src="css/images/IPIAD.jpg" width="100%" />
         <div data-role="content">
@@ -66,16 +66,6 @@
                     </a>
                 </li>
             </ul>
-            <!--<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><a href="#dettaglioPiadineria" class="ui-link-inherit">
-                    <p class="ui-li-aside ui-li-desc">
-                        <strong>1</strong> km
-                        <br />
-                        Percorrenza: <strong>9</strong> min
-                    </p>
-                    <h3 class="ui-li-heading">Piadineria A</h3>
-                    <p class="ui-li-desc"><strong>Viale dei Mille 69, Brescia</strong></p>
-                </a></li>-->
-
         </div>
         <div data-role="footer" style="overflow: hidden;" data-position="fixed">
             <h4 style="text-align: center;">Studiofarma S.r.l.</h4>
@@ -154,7 +144,7 @@
 
         <div data-role="popup" id="purchase" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width: 340px; padding-bottom: 2em;">
             <h3>Compra una piadina</h3>
-            <p>Quante piadine vuoi acquistare?</p>
+            <p>Quante piadine "<strong id="popupNomePiadina"></strong>" vuoi acquistare?</p>
             <label for="sliderQuantita">Quantit&agrave;</label>
             <input id="sliderQuantita" type="range" name="slider" value="1" min="0" max="15" data-highlight="false" />
             <a data-role="button" id="btnMeno">-</a>
@@ -168,7 +158,7 @@
             <div data-role="navbar">
                 <ul>
                     <li><a class="BtnListaPiadinerie" href="#" data-icon="arrow-l">Indietro</a></li>
-                    <li><a href="#consegnaPiadine" data-icon="arrow-r" class="ui-btn-active">Continua</a></li>
+                    <li><a data-icon="arrow-r" class="ui-btn-active BtnLoadConsegna">Continua</a></li>
                 </ul>
             </div>
         </div>
@@ -179,34 +169,99 @@
             <h3>CONSEGNA</h3>
         </div>
 
-        <div data-role="content">
-            <a data-role="button" href="#menuPiadine" data-icon="arrow-l" data-iconpos="left">Indietro
-            </a>
-        </div>
+        <ul data-role="listview" data-divider-theme="b" data-inset="true">
+            <li data-role="list-divider" role="heading">Piadineria selezionata
+            </li>
+            <li data-theme="c">
+                <h2 id="tblConfermaRagioneSociale"></h2>
+            </li>
+            <li data-role="list-divider" role="heading">Totale Piadine
+            </li>
+            <li data-theme="c">
+                <h2 id="tblConfermaNumeroPezzi"></h2>
+            </li>
+            <li data-role="list-divider" role="heading">Prezzo
+            </li>
+            <li data-theme="c">
+                <h2 id="tblConfermaPrezzo"></h2>
+                &euro;
+            </li>
+        </ul>
+        <br />
+        <ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow" id="listViewRiepilogoPiadine">
+            <li data-role="list-divider" role="heading">Dettaglio Ordine</li>
+            <li>
+                <p class="ui-li-aside ui-li-desc">
+                    Quantit&agrave;: <strong>[quantita]</strong>
+                    <br />
+                    Prezzo complessivo: <strong>[totPrezzo]</strong> &euro;
+                </p>
+                <h3 class="ui-li-heading">[nome]</h3>
+            </li>
+        </ul>
 
-        <div data-role="fieldcontain">
-            <label for="name">Nome:</label>
-            <input type="text" name="name" id="name" value="" />
-        </div>
-        <div data-role="fieldcontain">
-            <label for="name">Cognome:</label>
-            <input type="text" name="name" id="Text1" value="" />
-        </div>
-        <div class="ui-field-contain ui-body ui-br" data-role="fieldcontain">
-            <label class="ui-input-text" for="time">Orario:</label>
-            <input id="time" class="ui-input-text ui-body-c" type="time" value="" name="time">
-        </div>
+        <br />
 
-        <div data-role="content">
-            <a data-role="button" href="#confermaOrdine" data-icon="arrow-r" data-iconpos="right">Conferma
-            </a>
-        </div>
+        <ul data-role="listview" data-divider-theme="b" data-inset="true">
+            <li data-role="list-divider" role="heading">Cognome
+            </li>
+            <li data-theme="c">
+                <input type="text" name="cognome" id="cognome" value="" />
+            </li>
+            <li data-role="list-divider" role="heading">Nome
+            </li>
+            <li data-theme="c">
+                <input type="text" name="nome" id="nome" value="" />
+            </li>
+            <li data-role="list-divider" role="heading">Orario
+            </li>
+            <li data-theme="c">
+               <table align="center">
+                    <tr>
+                        <td style="width: 100px;">
+                            <select id="oraConsegna" style="width: 50px">
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                            </select>
+                        </td>
+                        <td style="width: 10px;">:</td>
+                        <td style="width: 100px;">
+                            <select id="minutiConsegna" style="width: 50px">
+                                <option value="00">00</option>
+                                <option value="05">05</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="50">50</option>
+                                <option value="55">55</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
 
-        <div data-theme="" data-role="footer" data-position="fixed">
-            <span class="ui-title">
-                <h3>Studiofarma S.r.l.
-                </h3>
-            </span>
+        <div data-role="footer" style="overflow: hidden;" data-position="fixed">
+            <h4 style="text-align: center;">Studiofarma S.r.l.</h4>
+            <div data-role="navbar">
+                <ul>
+                    <li><a class="BtnClosePopup" href="#" data-icon="arrow-l">Indietro</a></li>
+                    <li><a href="#confermaOrdine" data-icon="arrow-r" class="ui-btn-active">Conferma</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
