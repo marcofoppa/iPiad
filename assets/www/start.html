@@ -6,7 +6,7 @@
     <link href="css/jquery.mobile-1.3.1.min.css" rel="stylesheet" />
     <link href="css/jquery.mobile.structure-1.3.1.min.css" rel="stylesheet" />
     <link href="css/jquery.mobile.theme-1.3.1.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+
 
     <script src="js/library/jquery.js"></script>
     <script src="js/library/jquery.mobile-1.3.1.min.js"></script>
@@ -22,13 +22,15 @@
     <script src="js/stf/PaginaLocalizzazione.js"></script>
 
     <script src="js/stf/main.js"></script>
+    
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body data-content-theme="b">
     <!-- Home -->
     <div data-role="page" id="localizzazione">
         <div data-role="header">
-            <h4>IPIAD 1.0.49</h4> 
+            <h4>IPIAD 1.0.71</h4>
         </div>
         <img src="css/images/IPIAD.jpg" width="100%" />
         <div data-role="content">
@@ -48,8 +50,8 @@
     </div>
 
     <div data-role="page" id="piadinerie">
-        <div data-theme="a" data-role="header">
-            <h2>Scegli la piadineria</h2>
+        <div data-theme="a" data-role="header" data-position="fixed">
+            <p style="text-align: center;">Scegli la piadineria</p>
         </div>
         <div data-role="content">
 
@@ -90,25 +92,30 @@
     </div>
 
     <div data-role="page" id="dettaglioPiadineria">
-        <div data-theme="a" data-role="header">
-            <h3 id="ragioneSociale">Piadineria</h3>
+        <div data-theme="a" data-role="header" data-position="fixed">
+            <p style="text-align: center;">Conferma la piadineria</p>
         </div>
 
         <div data-role="content">
-            <div id="map_canvas"></div>
+
+
+            <div id="map_canvas" class="mappastyle"></div>
+
+            <table width="80%" align="center">
+                <tr>
+                    <td id="tableRagioneSociale"></td>
+                </tr>
+                <tr>
+                    <td id="tableIndirizzo"></td>
+                </tr>
+                <tr>
+                    <td id="tableCitta"></td>
+                </tr>
+            </table>
+
         </div>
 
-        <table width="80%" align="center">
-            <tr>
-                <td id="tableRagioneSociale"></td>
-            </tr>
-            <tr>
-                <td id="tableIndirizzo"></td>
-            </tr>
-            <tr>
-                <td id="tableCitta"></td>
-            </tr>
-        </table>
+
 
         <div data-role="footer" style="overflow: hidden;" data-position="fixed">
             <h4 style="text-align: center;">Studiofarma S.r.l.</h4>
@@ -123,8 +130,8 @@
     </div>
 
     <div data-role="page" id="menuPiadine">
-        <div data-theme="a" data-role="header">
-            <h3>MENU' PIADINE</h3>
+        <div data-theme="a" data-role="header" data-position="fixed">
+            <p style="text-align: center;">Scegli le piadine</p>
         </div>
 
         <ul id="listViewPiadine" data-role="listview" data-split-icon="plus" data-split-theme="d" data-inset="true">
@@ -168,7 +175,7 @@
             <div data-role="navbar">
                 <ul>
                     <li><a class="BtnListaPiadinerie" href="#" data-icon="arrow-l">Indietro</a></li>
-                    <li><a href="#consegnaPiadine" data-icon="arrow-r" class="ui-btn-active">Continua</a></li>
+                    <li><a href="#consegnaPiadine" data-icon="arrow-r">Continua</a></li>
                 </ul>
             </div>
         </div>

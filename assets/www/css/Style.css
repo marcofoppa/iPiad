@@ -1,1 +1,8 @@
-﻿
+﻿.mappastyle {
+    width: 80%;
+    margin: auto;
+
+-moz-box-shadow:3px 3px 8px 4px #000000;
+-webkit-box-shadow:3px 3px 8px 4px #000000;
+box-shadow:3px 3px 8px 4px #000000;
+}

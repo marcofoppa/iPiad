@@ -1,6 +1,12 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
+
+    $.mobile.defaultPageTransition = 'none';
+    $.mobile.defaultDialogTransition = 'none';
+    $.mobile.phonegapNavigationEnabled = true;
+    $.mobile.buttonMarkup.hoverDelay = 0;
+    $.mobile.allowCrossDomainPages = true;
     
     $(".BtnEsci").click(function () {
         navigator.app.exitApp();

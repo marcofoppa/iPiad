@@ -2,8 +2,9 @@
 
 
 function LoadPaginaLocalizzazione() {
+    
 
-    $.mobile.changePage("#localizzazione", { transition: "slideup", changeHash: false });
+    $.mobile.changePage("#localizzazione", {  changeHash: false });
 
     $.mobile.loading('show', {
         text: 'Sto caricando la tua posizione. Attendi !!!',
@@ -11,8 +12,13 @@ function LoadPaginaLocalizzazione() {
         theme: 'z',
         html: ""
     });
+    
+    var wait = setInterval(function () {
+        window.clearInterval(wait);
+        GetCurrentPositionAndLoadPaginaPiadinerie();
+    }, 3000);
 
-    GetCurrentPositionAndLoadPaginaPiadinerie();
+
 
 }
 

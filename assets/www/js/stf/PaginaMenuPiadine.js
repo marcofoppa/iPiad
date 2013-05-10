@@ -41,7 +41,7 @@ function ComponiMenu(lista) {
         $('#sliderQuantita').val(GetPiadina(CodicePiadina).Quantita);
     });
 
-    $.mobile.changePage("#menuPiadine", { transition: "slideup", changeHash: false });
+    $.mobile.changePage("#menuPiadine", {  changeHash: false });
     $('#listViewPiadine').listview('refresh');
 
     $('#totalePezzi').val(totPezzi);
